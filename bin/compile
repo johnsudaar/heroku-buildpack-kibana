@@ -10,20 +10,6 @@ ENV_DIR=$3
 
 INIT_SCRIPT="$BUILD_DIR/.profile.d/kibana.sh"
 
-if [ -f "$ENV_DIR/ELASTICSEARCH_URL" ]; then
-  ELASTICSEARCH_URL="$(cat $ENV_DIR/ELASTICSEARCH_URL):443"
-elif [ -f "$ENV_DIR/BONSAI_URL" ]; then
-  ELASTICSEARCH_URL="$(cat $ENV_DIR/BONSAI_URL):443"
-else
-  ELASTICSEARCH_URL="http://localhost:9200"
-fi
-
-if [ -f "$ENV_DIR/DOWNLOAD_URL" ]; then
-  DOWNLOAD_URL=$(cat $ENV_DIR/DOWNLOAD_URL)
-else
-  DOWNLOAD_URL="https://download.elastic.co/kibana/kibana/kibana-4.6.3-linux-x86_64.tar.gz"
-fi
-
 KIBANA_PACKAGE=${DOWNLOAD_URL##*/}
 
 case ${KIBANA_PACKAGE} in
